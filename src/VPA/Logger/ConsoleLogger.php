@@ -136,6 +136,9 @@ class ConsoleLogger extends AbstractLogger
         $text = $this->interpolate($message, $context);
         $color = '1;37';
         switch ($level) {
+            case 'emergency':
+                $color = '0;35';
+                break;
             case 'info':
                 $color = '0;32';
                 break;
