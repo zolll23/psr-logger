@@ -9,10 +9,7 @@ use VPA\DI\Container;
 require_once(__DIR__ . '/../vendor/autoload.php');
 
 // We want use for logs JS Developer Console if we run the script in browser and CLI Console - if run in CLI mode
-$classLogger = 'VPA\Logger\JSConsoleLogger';
-if(php_sapi_name()=='cli') {
-    $classLogger = 'VPA\Logger\ConsoleLogger';
-}
+$classLogger = php_sapi_name()=='cli' ? 'VPA\Logger\ConsoleLogger' : 'VPA\Logger\JSConsoleLogger';
 
 $di = new Container();
 $di->registerContainers([
