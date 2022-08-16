@@ -2,7 +2,9 @@
 
 **Installation**
 
+```
 composer require vpa/psr-logger
+```
 
 **Example**
 
