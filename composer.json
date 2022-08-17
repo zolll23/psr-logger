@@ -5,10 +5,12 @@
     "php 8.x",
     "PSR-3",
     "Logger",
+    "CLI console logger",
+    "JS console logger",
     "Injectable"
   ],
   "license": "AGPL-3.0-or-later",
-  "homepage": "https://github.com/zolll23/di",
+  "homepage": "https://github.com/zolll23/psr-logger",
   "authors": [
     {
       "name": "Andrey Pakhomov",
