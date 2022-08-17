@@ -1,5 +1,10 @@
 # PSR-3 logger
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/zolll23/psr-logger/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/zolll23/psr-logger/?branch=main)
+[![Code Coverage](https://scrutinizer-ci.com/g/zolll23/psr-logger/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/zolll23/psr-logger/?branch=main)
+[![Build Status](https://scrutinizer-ci.com/g/zolll23/psr-logger/badges/build.png?b=main)](https://scrutinizer-ci.com/g/zolll23/psr-logger/build-status/main)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/zolll23/psr-logger/badges/code-intelligence.svg?b=main)](https://scrutinizer-ci.com/code-intelligence)
+
 **Installation**
 
 ```
