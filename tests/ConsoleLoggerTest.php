@@ -105,11 +105,11 @@ class ConsoleLoggerTest extends TestCase
     public function testTable()
     {
         ob_start();
-        $this->logger->table("testTable {Interpolation}",['Interpolation'=>'InterpolationDebug']);
+        $this->logger->table("testTable {Interpolation}",['Interpolation'=>'InterpolationTable']);
         $capture = ob_get_clean();
         $this->assertTrue(strpos($capture, "1;37") !== false);
-        $this->assertTrue(strpos($capture, "testDebug") !== false);
-        $this->assertTrue(strpos($capture, "InterpolationDebug") !== false);
+        $this->assertTrue(strpos($capture, "testTable") !== false);
+        $this->assertTrue(strpos($capture, "InterpolationTable") !== false);
     }
 
 
