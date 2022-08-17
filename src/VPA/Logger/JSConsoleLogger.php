@@ -4,118 +4,13 @@ declare(strict_types=1);
 namespace VPA\Logger;
 
 use Psr\Log\AbstractLogger;
+use Psr\Log\LogLevel;
 use VPA\DI\Container;
 use VPA\DI\Injectable;
 
 #[Injectable()]
-class JSConsoleLogger extends AbstractLogger
+class JSConsoleLogger extends BaseLogger
 {
-    /**
-     * @var mixed
-     */
-    private $serverRequest;
-
-    function __construct()
-    {
-        $this->serverRequest = (new Container())->get('VPA\Framework\ServerRequest');
-    }
-
-    /**
-     * Emegency situation
-     *
-     * @param string $message
-     * @param array $context
-     * @return void
-     */
-    public function emergency(string|\Stringable $message, array $context = []): void
-    {
-        $this->log('emergency', $message, $context);
-    }
-
-    /**
-     * Action must be taken immediately.
-     *
-     * @param string $message
-     * @param array $context
-     * @return void
-     */
-    public function alert(string|\Stringable $message, array $context = []): void
-    {
-        $this->log('alert', $message, $context);
-    }
-
-    /**
-     * Critical conditions.
-     *
-     * @param string $message
-     * @param array $context
-     * @return void
-     */
-    public function critical(string|\Stringable $message, array $context = []): void
-    {
-        $this->log('critical', $message, $context);
-    }
-
-    /**
-     * Runtime errors that do not require immediate action but should
-     * be logged and monitored.
-     *
-     * @param string $message
-     * @param array $context
-     * @return void
-     */
-    public function error(string|\Stringable $message, array $context = []): void
-    {
-        $this->log('error', $message, $context);
-    }
-
-    /**
-     * Exceptional occurrences that are not errors.
-     *
-     * @param string $message
-     * @param array $context
-     * @return void
-     */
-    public function warning(string|\Stringable $message, array $context = []): void
-    {
-        $this->log('warning', $message, $context);
-    }
-
-    /**
-     * Normal but significant events.
-     *
-     * @param string $message
-     * @param array $context
-     * @return void
-     */
-    public function notice(string|\Stringable $message, array $context = []): void
-    {
-        $this->log('notice', $message, $context);
-    }
-
-    /**
-     * Interesting events.
-     *
-     * @param string $message
-     * @param array $context
-     * @return void
-     */
-    public function info(string|\Stringable $message, array $context = []): void
-    {
-        $this->log('info', $message, $context);
-    }
-
-    /**
-     * Detailed debug information.
-     *
-     * @param string $message
-     * @param array $context
-     * @return void
-     */
-    public function debug(string|\Stringable $message, array $context = []): void
-    {
-        $this->log('debug', $message, $context);
-    }
 
     /**
      * Table information.
@@ -139,22 +34,18 @@ class JSConsoleLogger extends AbstractLogger
      */
     public function log(mixed $level, string|\Stringable $message, array $context = []): void
     {
-
-        if ($this->serverRequest->isJson()) {
-            return;
-        }
         $text = $this->interpolate($message, $context);
         switch ($level) {
-            case 'error':
+            case LogLevel::ERROR:
                 printf("<script>console.error('%s [%s] %s');</script>", date('y-m-d H:i:s'), $level, $this->stringFormat($text));
                 break;
-            case 'debug':
+            case LogLevel::DEBUG:
                 printf("<script>console.debug('%s [%s] %s');</script>", date('y-m-d H:i:s'), $level, $this->stringFormat($text));
                 break;
-            case 'info':
+            case LogLevel::INFO:
                 printf("<script>console.info('%s [%s] %s');</script>", date('y-m-d H:i:s'), $level, $this->stringFormat($text));
                 break;
-            case 'warning':
+            case LogLevel::WARNING:
                 printf("<script>console.warn('%s [%s] %s');</script>", date('y-m-d H:i:s'), $level, $this->stringFormat($text));
                 break;
             case 'table':
@@ -172,24 +63,4 @@ class JSConsoleLogger extends AbstractLogger
         //$output= str_replace("\\","\\\\", $output);
         return $output;
     }
-
-    /**
-     * Interpolates context values into the message placeholders.
-     * Taken from PSR-3's example implementation.
-     * @param string $message
-     * @param array $context
-     * @return string
-     */
-    protected function interpolate(string $message, array $context = []): string
-    {
-        // build a replacement array with braces around the context keys
-        $replace = array();
-        foreach ($context as $key => $val) {
-            $replace['{' . $key . '}'] = $val;
-        }
-
-        // interpolate replacement values into the message and return
-        return strtr($message, $replace);
-    }
-
 }
