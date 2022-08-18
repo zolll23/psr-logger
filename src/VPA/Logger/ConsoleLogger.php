@@ -29,7 +29,7 @@ class ConsoleLogger extends BaseLogger
      * @param array $context
      * @return void
      */
-    public function log(mixed $level, string|\Stringable $message, array $context = []): void
+    public function log(mixed $level, string | \Stringable $message, array $context = []): void
     {
         $text = $this->interpolate($message, $context);
         $color = '1;37';
