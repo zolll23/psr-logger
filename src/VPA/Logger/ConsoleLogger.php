@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace VPA\Logger;
@@ -8,7 +9,6 @@ use VPA\DI\Injectable;
 #[Injectable()]
 class ConsoleLogger extends BaseLogger
 {
-
     /**
      * Table information.
      *
@@ -56,6 +56,4 @@ class ConsoleLogger extends BaseLogger
         }
         printf("\033[%sm%s [%s] %s\033[0m\n", $color, date('y-m-d H:i:s'), $level, $text);
     }
-
-
 }

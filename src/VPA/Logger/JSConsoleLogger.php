@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace VPA\Logger;
@@ -11,7 +12,6 @@ use VPA\DI\Injectable;
 #[Injectable()]
 class JSConsoleLogger extends BaseLogger
 {
-
     /**
      * Table information.
      *
@@ -37,22 +37,53 @@ class JSConsoleLogger extends BaseLogger
         $text = $this->interpolate($message, $context);
         switch ($level) {
             case LogLevel::ERROR:
-                printf("<script>console.error('%s [%s] %s');</script>", date('y-m-d H:i:s'), $level, $this->stringFormat($text));
+                printf(
+                    "<script>console.error('%s [%s] %s');</script>",
+                    date('y-m-d H:i:s'),
+                    $level,
+                    $this->stringFormat($text)
+                );
                 break;
             case LogLevel::DEBUG:
-                printf("<script>console.debug('%s [%s] %s');</script>", date('y-m-d H:i:s'), $level, $this->stringFormat($text));
+                printf(
+                    "<script>console.debug('%s [%s] %s');</script>",
+                    date('y-m-d H:i:s'),
+                    $level,
+                    $this->stringFormat($text)
+                );
                 break;
             case LogLevel::INFO:
-                printf("<script>console.info('%s [%s] %s');</script>", date('y-m-d H:i:s'), $level, $this->stringFormat($text));
+                printf(
+                    "<script>console.info('%s [%s] %s');</script>",
+                    date('y-m-d H:i:s'),
+                    $level,
+                    $this->stringFormat($text)
+                );
                 break;
             case LogLevel::WARNING:
-                printf("<script>console.warn('%s [%s] %s');</script>", date('y-m-d H:i:s'), $level, $this->stringFormat($text));
+                printf(
+                    "<script>console.warn('%s [%s] %s');</script>",
+                    date('y-m-d H:i:s'),
+                    $level,
+                    $this->stringFormat($text)
+                );
                 break;
             case 'table':
-                printf("<script>console.debug('%s [%s] %s');console.table(%s);</script>", date('y-m-d H:i:s'), $level, $this->stringFormat($message), json_encode($context));
+                printf(
+                    "<script>console.debug('%s [%s] %s');console.table(%s);</script>",
+                    date('y-m-d H:i:s'),
+                    $level,
+                    $this->stringFormat($message),
+                    json_encode($context)
+                );
                 break;
             default:
-                printf("<script>console.log('%s [%s] %s');</script>", date('y-m-d H:i:s'), $level, $this->stringFormat($text));
+                printf(
+                    "<script>console.log('%s [%s] %s');</script>",
+                    date('y-m-d H:i:s'),
+                    $level,
+                    $this->stringFormat($text)
+                );
         }
     }
 

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace VPA\Logger;
-
 
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
@@ -116,7 +114,7 @@ class BaseLogger extends AbstractLogger
     protected function interpolate(string|\Stringable $message, array $context = []): string
     {
         // build a replacement array with braces around the context keys
-        $replace = array();
+        $replace = [];
         foreach ($context as $key => $val) {
             $replace['{' . $key . '}'] = $val;
         }
@@ -128,6 +126,4 @@ class BaseLogger extends AbstractLogger
     public function log(mixed $level, string|\Stringable $message, array $context = []): void
     {
     }
-
-
 }

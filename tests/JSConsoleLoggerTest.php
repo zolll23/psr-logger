@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests;
@@ -6,7 +7,6 @@ namespace Tests;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LogLevel;
 use VPA\Logger\JSConsoleLogger;
-
 
 class JSConsoleLoggerTest extends TestCase
 {
@@ -26,7 +26,11 @@ class JSConsoleLoggerTest extends TestCase
     public function testLog()
     {
         ob_start();
-        $this->logger->log(LogLevel::EMERGENCY, "testEmergency {Interpolation}",['Interpolation'=>'InterpolationEmergency']);
+        $this->logger->log(
+            LogLevel::EMERGENCY,
+            "testEmergency {Interpolation}",
+            ['Interpolation' => 'InterpolationEmergency']
+        );
         $capture = ob_get_clean();
         $this->assertTrue(strpos($capture, "console.log") !== false);
         $this->assertTrue(strpos($capture, "testEmergency") !== false);
@@ -36,7 +40,10 @@ class JSConsoleLoggerTest extends TestCase
     public function testEmergency()
     {
         ob_start();
-        $this->logger->emergency("testEmergency {Interpolation}",['Interpolation'=>'InterpolationEmergency']);
+        $this->logger->emergency(
+            "testEmergency {Interpolation}",
+            ['Interpolation' => 'InterpolationEmergency']
+        );
         $capture = ob_get_clean();
         $this->assertTrue(strpos($capture, "console.log") !== false);
         $this->assertTrue(strpos($capture, "testEmergency") !== false);
@@ -46,7 +53,7 @@ class JSConsoleLoggerTest extends TestCase
     public function testAlert()
     {
         ob_start();
-        $this->logger->alert("testAlert {Interpolation}",['Interpolation'=>'InterpolationAlert']);
+        $this->logger->alert("testAlert {Interpolation}", ['Interpolation' => 'InterpolationAlert']);
         $capture = ob_get_clean();
         $this->assertTrue(strpos($capture, "console.log") !== false);
         $this->assertTrue(strpos($capture, "testAlert") !== false);
@@ -56,7 +63,7 @@ class JSConsoleLoggerTest extends TestCase
     public function testCritical()
     {
         ob_start();
-        $this->logger->critical("testCritical {Interpolation}",['Interpolation'=>'InterpolationCritical']);
+        $this->logger->critical("testCritical {Interpolation}", ['Interpolation' => 'InterpolationCritical']);
         $capture = ob_get_clean();
         $this->assertTrue(strpos($capture, "console.log") !== false);
         $this->assertTrue(strpos($capture, "testCritical") !== false);
@@ -66,7 +73,7 @@ class JSConsoleLoggerTest extends TestCase
     public function testError()
     {
         ob_start();
-        $this->logger->error("testError {Interpolation}",['Interpolation'=>'InterpolationError']);
+        $this->logger->error("testError {Interpolation}", ['Interpolation' => 'InterpolationError']);
         $capture = ob_get_clean();
         $this->assertTrue(strpos($capture, "console.error") !== false);
         $this->assertTrue(strpos($capture, "testError") !== false);
@@ -76,7 +83,7 @@ class JSConsoleLoggerTest extends TestCase
     public function testWarning()
     {
         ob_start();
-        $this->logger->warning("testWarning {Interpolation}",['Interpolation'=>'InterpolationWarning']);
+        $this->logger->warning("testWarning {Interpolation}", ['Interpolation' => 'InterpolationWarning']);
         $capture = ob_get_clean();
         $this->assertTrue(strpos($capture, "console.warn") !== false);
         $this->assertTrue(strpos($capture, "testWarning") !== false);
@@ -86,7 +93,7 @@ class JSConsoleLoggerTest extends TestCase
     public function testNotice()
     {
         ob_start();
-        $this->logger->notice("testNotice {Interpolation}",['Interpolation'=>'InterpolationNotice']);
+        $this->logger->notice("testNotice {Interpolation}", ['Interpolation' => 'InterpolationNotice']);
         $capture = ob_get_clean();
         $this->assertTrue(strpos($capture, "console.log") !== false);
         $this->assertTrue(strpos($capture, "testNotice") !== false);
@@ -96,7 +103,7 @@ class JSConsoleLoggerTest extends TestCase
     public function testInfo()
     {
         ob_start();
-        $this->logger->info("testInfo {Interpolation}",['Interpolation'=>'InterpolationInfo']);
+        $this->logger->info("testInfo {Interpolation}", ['Interpolation' => 'InterpolationInfo']);
         $capture = ob_get_clean();
         $this->assertTrue(strpos($capture, "console.info") !== false);
         $this->assertTrue(strpos($capture, "testInfo") !== false);
@@ -106,7 +113,7 @@ class JSConsoleLoggerTest extends TestCase
     public function testDebug()
     {
         ob_start();
-        $this->logger->debug("testDebug {Interpolation}",['Interpolation'=>'InterpolationDebug']);
+        $this->logger->debug("testDebug {Interpolation}", ['Interpolation' => 'InterpolationDebug']);
         $capture = ob_get_clean();
         $this->assertTrue(strpos($capture, "console.debug") !== false);
         $this->assertTrue(strpos($capture, "testDebug") !== false);
@@ -116,12 +123,10 @@ class JSConsoleLoggerTest extends TestCase
     public function testTable()
     {
         ob_start();
-        $this->logger->table("testTable {Interpolation}",['Interpolation'=>'InterpolationDebug']);
+        $this->logger->table("testTable {Interpolation}", ['Interpolation' => 'InterpolationDebug']);
         $capture = ob_get_clean();
         $this->assertTrue(strpos($capture, "console.table") !== false);
         $this->assertTrue(strpos($capture, "testTable") !== false);
         $this->assertTrue(strpos($capture, "InterpolationDebug") !== false);
     }
-
-
 }
