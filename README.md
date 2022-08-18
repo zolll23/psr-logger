@@ -1,5 +1,9 @@
 # PSR-3 logger
-
+[![Latest Stable Version](http://poser.pugx.org/vpa/psr-logger/v)](https://packagist.org/packages/vpa/psr-logger) 
+[![Total Downloads](http://poser.pugx.org/vpa/psr-logger/downloads)](https://packagist.org/packages/vpa/psr-logger) 
+[![Latest Unstable Version](http://poser.pugx.org/vpa/psr-logger/v/unstable)](https://packagist.org/packages/vpa/psr-logger) 
+[![License](http://poser.pugx.org/vpa/psr-logger/license)](https://packagist.org/packages/vpa/psr-logger) 
+[![PHP Version Require](http://poser.pugx.org/vpa/psr-logger/require/php)](https://packagist.org/packages/vpa/psr-logger)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/zolll23/psr-logger/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/zolll23/psr-logger/?branch=main)
 [![Code Coverage](https://scrutinizer-ci.com/g/zolll23/psr-logger/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/zolll23/psr-logger/?branch=main)
 [![Build Status](https://scrutinizer-ci.com/g/zolll23/psr-logger/badges/build.png?b=main)](https://scrutinizer-ci.com/g/zolll23/psr-logger/build-status/main)
