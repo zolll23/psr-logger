@@ -19,7 +19,7 @@ class JSConsoleLogger extends BaseLogger
      * @param array $context
      * @return void
      */
-    public function table(string|\Stringable $message, array $context = []): void
+    public function table(string | \Stringable $message, array $context = []): void
     {
         $this->log('table', $message, $context);
     }
@@ -32,7 +32,7 @@ class JSConsoleLogger extends BaseLogger
      * @param array $context
      * @return void
      */
-    public function log(mixed $level, string|\Stringable $message, array $context = []): void
+    public function log(mixed $level, string | \Stringable $message, array $context = []): void
     {
         $text = $this->interpolate($message, $context);
         switch ($level) {

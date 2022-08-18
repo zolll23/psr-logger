@@ -16,7 +16,7 @@ class ConsoleLogger extends BaseLogger
      * @param array $context
      * @return void
      */
-    public function table(string|\Stringable $message, array $context = []): void
+    public function table(string | \Stringable $message, array $context = []): void
     {
         $this->log('table', $message . "\n{Table}", ['Table' => print_r($context, true)]);
     }

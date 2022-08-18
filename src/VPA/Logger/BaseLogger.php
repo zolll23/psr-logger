@@ -14,7 +14,7 @@ class BaseLogger extends AbstractLogger
      * @param array $context
      * @return void
      */
-    public function emergency(string|\Stringable $message, array $context = []): void
+    public function emergency(string | \Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::EMERGENCY, $message, $context);
     }
@@ -26,7 +26,7 @@ class BaseLogger extends AbstractLogger
      * @param array $context
      * @return void
      */
-    public function alert(string|\Stringable $message, array $context = []): void
+    public function alert(string | \Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::ALERT, $message, $context);
     }
@@ -38,7 +38,7 @@ class BaseLogger extends AbstractLogger
      * @param array $context
      * @return void
      */
-    public function critical(string|\Stringable $message, array $context = []): void
+    public function critical(string | \Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::CRITICAL, $message, $context);
     }
@@ -51,7 +51,7 @@ class BaseLogger extends AbstractLogger
      * @param array $context
      * @return void
      */
-    public function error(string|\Stringable $message, array $context = []): void
+    public function error(string | \Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::ERROR, $message, $context);
     }
@@ -63,7 +63,7 @@ class BaseLogger extends AbstractLogger
      * @param array $context
      * @return void
      */
-    public function warning(string|\Stringable $message, array $context = []): void
+    public function warning(string | \Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::WARNING, $message, $context);
     }
@@ -75,7 +75,7 @@ class BaseLogger extends AbstractLogger
      * @param array $context
      * @return void
      */
-    public function notice(string|\Stringable $message, array $context = []): void
+    public function notice(string | \Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::NOTICE, $message, $context);
     }
@@ -87,7 +87,7 @@ class BaseLogger extends AbstractLogger
      * @param array $context
      * @return void
      */
-    public function info(string|\Stringable $message, array $context = []): void
+    public function info(string | \Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::INFO, $message, $context);
     }
@@ -99,7 +99,7 @@ class BaseLogger extends AbstractLogger
      * @param array $context
      * @return void
      */
-    public function debug(string|\Stringable $message, array $context = []): void
+    public function debug(string | \Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::DEBUG, $message, $context);
     }
@@ -111,7 +111,7 @@ class BaseLogger extends AbstractLogger
      * @param array $context
      * @return string
      */
-    protected function interpolate(string|\Stringable $message, array $context = []): string
+    protected function interpolate(string | \Stringable $message, array $context = []): string
     {
         // build a replacement array with braces around the context keys
         $replace = [];
@@ -123,7 +123,7 @@ class BaseLogger extends AbstractLogger
         return strtr($message, $replace);
     }
 
-    public function log(mixed $level, string|\Stringable $message, array $context = []): void
+    public function log(mixed $level, string | \Stringable $message, array $context = []): void
     {
     }
 }
