@@ -26,3 +26,15 @@ $logger->warning("warning message {date}", ['date' => date('d.m.Y H:i:s')]);
 $logger->notice("notice message {date}", ['date' => date('d.m.Y H:i:s')]);
 $logger->info("info message {date}", ['date' => date('d.m.Y H:i:s')]);
 $logger->debug("debug message {date}", ['date' => date('d.m.Y H:i:s')]);
+$logger->debug("debug table data {table} and {table2}", [
+    'table' => [
+        'project name' => 'PSR Logger',
+        'version' => '0.1.1',
+        'date' => date('Y-m-d H:i:s'),
+    ],
+    'table2' => [
+        'project name' => 'PSR Logger',
+        'version' => '0.1.1',
+        'date' => date('Y-m-d H:i:s'),
+    ]
+]);

@@ -119,14 +119,4 @@ class JSConsoleLoggerTest extends TestCase
         $this->assertTrue(strpos($capture, "testDebug") !== false);
         $this->assertTrue(strpos($capture, "InterpolationDebug") !== false);
     }
-
-    public function testTable()
-    {
-        ob_start();
-        $this->logger->table("testTable {Interpolation}", ['Interpolation' => 'InterpolationDebug']);
-        $capture = ob_get_clean();
-        $this->assertTrue(strpos($capture, "console.table") !== false);
-        $this->assertTrue(strpos($capture, "testTable") !== false);
-        $this->assertTrue(strpos($capture, "InterpolationDebug") !== false);
-    }
 }

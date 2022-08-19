@@ -4,17 +4,18 @@ namespace VPA\Logger;
 
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
+use \Stringable;
 
 class BaseLogger extends AbstractLogger
 {
     /**
-     * Emegency situation
+     * Emergency situation
      *
-     * @param string $message
+     * @param string | Stringable $message
      * @param array $context
      * @return void
      */
-    public function emergency(string | \Stringable $message, array $context = []): void
+    public function emergency(string | Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::EMERGENCY, $message, $context);
     }
@@ -22,11 +23,11 @@ class BaseLogger extends AbstractLogger
     /**
      * Action must be taken immediately.
      *
-     * @param string $message
+     * @param string | Stringable $message
      * @param array $context
      * @return void
      */
-    public function alert(string | \Stringable $message, array $context = []): void
+    public function alert(string | Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::ALERT, $message, $context);
     }
@@ -34,11 +35,11 @@ class BaseLogger extends AbstractLogger
     /**
      * Critical conditions.
      *
-     * @param string $message
+     * @param string | Stringable $message
      * @param array $context
      * @return void
      */
-    public function critical(string | \Stringable $message, array $context = []): void
+    public function critical(string | Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::CRITICAL, $message, $context);
     }
@@ -47,11 +48,11 @@ class BaseLogger extends AbstractLogger
      * Runtime errors that do not require immediate action but should
      * be logged and monitored.
      *
-     * @param string $message
+     * @param string | Stringable $message
      * @param array $context
      * @return void
      */
-    public function error(string | \Stringable $message, array $context = []): void
+    public function error(string | Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::ERROR, $message, $context);
     }
@@ -59,11 +60,11 @@ class BaseLogger extends AbstractLogger
     /**
      * Exceptional occurrences that are not errors.
      *
-     * @param string $message
+     * @param string | Stringable $message
      * @param array $context
      * @return void
      */
-    public function warning(string | \Stringable $message, array $context = []): void
+    public function warning(string | Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::WARNING, $message, $context);
     }
@@ -71,11 +72,11 @@ class BaseLogger extends AbstractLogger
     /**
      * Normal but significant events.
      *
-     * @param string $message
+     * @param string | Stringable $message
      * @param array $context
      * @return void
      */
-    public function notice(string | \Stringable $message, array $context = []): void
+    public function notice(string | Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::NOTICE, $message, $context);
     }
@@ -83,11 +84,11 @@ class BaseLogger extends AbstractLogger
     /**
      * Interesting events.
      *
-     * @param string $message
+     * @param string | Stringable $message
      * @param array $context
      * @return void
      */
-    public function info(string | \Stringable $message, array $context = []): void
+    public function info(string | Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::INFO, $message, $context);
     }
@@ -95,11 +96,11 @@ class BaseLogger extends AbstractLogger
     /**
      * Detailed debug information.
      *
-     * @param string $message
+     * @param string | Stringable $message
      * @param array $context
      * @return void
      */
-    public function debug(string | \Stringable $message, array $context = []): void
+    public function debug(string | Stringable $message, array $context = []): void
     {
         $this->log(LogLevel::DEBUG, $message, $context);
     }
@@ -107,23 +108,28 @@ class BaseLogger extends AbstractLogger
     /**
      * Interpolates context values into the message placeholders.
      * Taken from PSR-3's example implementation.
-     * @param string $message
+     * @param string | Stringable $message
      * @param array $context
      * @return string
      */
-    protected function interpolate(string | \Stringable $message, array $context = []): string
+    protected function interpolate(string | Stringable $message, array $context = []): string
     {
         // build a replacement array with braces around the context keys
         $replace = [];
-        foreach ($context as $key => $val) {
-            $replace['{' . $key . '}'] = $val;
+        foreach ($context as $key => $value) {
+            $replace['{' . $key . '}'] = $this->castValue($value);
         }
 
         // interpolate replacement values into the message and return
-        return strtr($message, $replace);
+        return strtr((string)$message, $replace);
     }
 
-    public function log(mixed $level, string | \Stringable $message, array $context = []): void
+    public function log(mixed $level, string | Stringable $message, array $context = []): void
     {
+    }
+
+    protected function castValue(mixed $value): mixed
+    {
+        return $value;
     }
 }

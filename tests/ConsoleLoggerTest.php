@@ -27,9 +27,9 @@ class ConsoleLoggerTest extends TestCase
         ob_start();
         $this->logger->emergency("testEmergency {Interpolation}", ['Interpolation' => 'InterpolationEmergency']);
         $capture = ob_get_clean();
-        $this->assertTrue(strpos($capture, "0;35") !== false);
-        $this->assertTrue(strpos($capture, "testEmergency") !== false);
-        $this->assertTrue(strpos($capture, "InterpolationEmergency") !== false);
+        $this->assertTrue(str_contains($capture, "0;35") !== false);
+        $this->assertTrue(str_contains($capture, "testEmergency") !== false);
+        $this->assertTrue(str_contains($capture, "InterpolationEmergency") !== false);
     }
 
     public function testAlert()
@@ -37,9 +37,9 @@ class ConsoleLoggerTest extends TestCase
         ob_start();
         $this->logger->alert("testAlert {Interpolation}", ['Interpolation' => 'InterpolationAlert']);
         $capture = ob_get_clean();
-        $this->assertTrue(strpos($capture, "1;31") !== false);
-        $this->assertTrue(strpos($capture, "testAlert") !== false);
-        $this->assertTrue(strpos($capture, "InterpolationAlert") !== false);
+        $this->assertTrue(str_contains($capture, "1;31") !== false);
+        $this->assertTrue(str_contains($capture, "testAlert") !== false);
+        $this->assertTrue(str_contains($capture, "InterpolationAlert") !== false);
     }
 
     public function testCritical()
@@ -47,9 +47,9 @@ class ConsoleLoggerTest extends TestCase
         ob_start();
         $this->logger->critical("testCritical {Interpolation}", ['Interpolation' => 'InterpolationCritical']);
         $capture = ob_get_clean();
-        $this->assertTrue(strpos($capture, "0;31") !== false);
-        $this->assertTrue(strpos($capture, "testCritical") !== false);
-        $this->assertTrue(strpos($capture, "InterpolationCritical") !== false);
+        $this->assertTrue(str_contains($capture, "0;31") !== false);
+        $this->assertTrue(str_contains($capture, "testCritical") !== false);
+        $this->assertTrue(str_contains($capture, "InterpolationCritical") !== false);
     }
 
     public function testError()
@@ -57,9 +57,9 @@ class ConsoleLoggerTest extends TestCase
         ob_start();
         $this->logger->error("testError {Interpolation}", ['Interpolation' => 'InterpolationError']);
         $capture = ob_get_clean();
-        $this->assertTrue(strpos($capture, "0;31") !== false);
-        $this->assertTrue(strpos($capture, "testError") !== false);
-        $this->assertTrue(strpos($capture, "InterpolationError") !== false);
+        $this->assertTrue(str_contains($capture, "0;31") !== false);
+        $this->assertTrue(str_contains($capture, "testError") !== false);
+        $this->assertTrue(str_contains($capture, "InterpolationError") !== false);
     }
 
     public function testWarning()
@@ -67,9 +67,9 @@ class ConsoleLoggerTest extends TestCase
         ob_start();
         $this->logger->warning("testWarning {Interpolation}", ['Interpolation' => 'InterpolationWarning']);
         $capture = ob_get_clean();
-        $this->assertTrue(strpos($capture, "1;37") !== false);
-        $this->assertTrue(strpos($capture, "testWarning") !== false);
-        $this->assertTrue(strpos($capture, "InterpolationWarning") !== false);
+        $this->assertTrue(str_contains($capture, "1;37") !== false);
+        $this->assertTrue(str_contains($capture, "testWarning") !== false);
+        $this->assertTrue(str_contains($capture, "InterpolationWarning") !== false);
     }
 
     public function testNotice()
@@ -77,9 +77,9 @@ class ConsoleLoggerTest extends TestCase
         ob_start();
         $this->logger->notice("testNotice {Interpolation}", ['Interpolation' => 'InterpolationNotice']);
         $capture = ob_get_clean();
-        $this->assertTrue(strpos($capture, "1;33") !== false);
-        $this->assertTrue(strpos($capture, "testNotice") !== false);
-        $this->assertTrue(strpos($capture, "InterpolationNotice") !== false);
+        $this->assertTrue(str_contains($capture, "1;33"));
+        $this->assertTrue(str_contains($capture, "testNotice"));
+        $this->assertTrue(str_contains($capture, "InterpolationNotice"));
     }
 
     public function testInfo()
@@ -87,9 +87,9 @@ class ConsoleLoggerTest extends TestCase
         ob_start();
         $this->logger->info("testInfo {Interpolation}", ['Interpolation' => 'InterpolationInfo']);
         $capture = ob_get_clean();
-        $this->assertTrue(strpos($capture, "0;32") !== false);
-        $this->assertTrue(strpos($capture, "testInfo") !== false);
-        $this->assertTrue(strpos($capture, "InterpolationInfo") !== false);
+        $this->assertTrue(str_contains($capture, "0;32") !== false);
+        $this->assertTrue(str_contains($capture, "testInfo") !== false);
+        $this->assertTrue(str_contains($capture, "InterpolationInfo") !== false);
     }
 
     public function testDebug()
@@ -97,18 +97,21 @@ class ConsoleLoggerTest extends TestCase
         ob_start();
         $this->logger->debug("testDebug {Interpolation}", ['Interpolation' => 'InterpolationDebug']);
         $capture = ob_get_clean();
-        $this->assertTrue(strpos($capture, "1;34") !== false);
-        $this->assertTrue(strpos($capture, "testDebug") !== false);
-        $this->assertTrue(strpos($capture, "InterpolationDebug") !== false);
+        $this->assertTrue(str_contains($capture, "1;34") !== false);
+        $this->assertTrue(str_contains($capture, "testDebug") !== false);
+        $this->assertTrue(str_contains($capture, "InterpolationDebug") !== false);
     }
 
     public function testTable()
     {
         ob_start();
-        $this->logger->table("testTable {Interpolation}", ['Interpolation' => 'InterpolationTable']);
+        $this->logger->debug("test1DArray {tableData}", [
+            'tableData' => [
+                'key' => 'value',
+            ]
+        ]);
         $capture = ob_get_clean();
-        $this->assertTrue(strpos($capture, "1;37") !== false);
-        $this->assertTrue(strpos($capture, "testTable") !== false);
-        $this->assertTrue(strpos($capture, "InterpolationTable") !== false);
+        $this->assertTrue(str_contains($capture, "test1DArray") !== false);
+        $this->assertTrue(str_contains($capture, "key | value") !== false);
     }
 }
