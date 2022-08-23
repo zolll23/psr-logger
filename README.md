@@ -1,6 +1,5 @@
 # PSR-3 logger
 [![Latest Stable Version](http://poser.pugx.org/vpa/psr-logger/v)](https://packagist.org/packages/vpa/psr-logger) 
-[![Total Downloads](http://poser.pugx.org/vpa/psr-logger/downloads)](https://packagist.org/packages/vpa/psr-logger) 
 [![Latest Unstable Version](http://poser.pugx.org/vpa/psr-logger/v/unstable)](https://packagist.org/packages/vpa/psr-logger) 
 [![License](http://poser.pugx.org/vpa/psr-logger/license)](https://packagist.org/packages/vpa/psr-logger) 
 [![PHP Version Require](http://poser.pugx.org/vpa/psr-logger/require/php)](https://packagist.org/packages/vpa/psr-logger)
